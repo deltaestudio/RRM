@@ -278,6 +278,68 @@
         table tr:last-child td {
             border-bottom: none;
         }
+
+              /* =========================================================
+               MOBILE-FRIENDLY PATCH (cole no final do <style>)
+               Mantém o layout no desktop e melhora no mobile.
+               ========================================================= */
+            
+            /* Evita problemas do 100vh em mobile com barra do navegador (usa dvh quando suportado) */
+            .slides-container {
+              height: 100vh;
+              height: 100dvh;
+            }
+            
+            /* Permite rolagem dentro do slide (o body continua overflow hidden) */
+            .slide{
+              padding: clamp(18px, 4vw, 60px) clamp(16px, 5vw, 80px);
+              overflow-y: auto;
+              -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Tipografia fluida */
+            h1 { font-size: clamp(28px, 6vw, 48px); }
+            h2 { font-size: clamp(22px, 5vw, 38px); }
+            h3 { font-size: clamp(18px, 4vw, 28px); }
+            .subtitle { font-size: clamp(16px, 3.5vw, 22px); }
+            
+            /* Cards mais confortáveis no mobile */
+            .card { padding: clamp(16px, 3.5vw, 28px); }
+            .metric-card { padding: clamp(14px, 3vw, 24px); }
+            
+            /* Grids responsivos (quebra automático para 1 coluna quando necessário) */
+            .metrics-grid{
+              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            .two-col{
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            /* Ajustes de posicionamento com padding fluido */
+            .confidential{ right: clamp(16px, 5vw, 80px); top: clamp(14px, 3vw, 30px); }
+            .slide-number{ right: clamp(16px, 5vw, 80px); bottom: clamp(14px, 3vw, 30px); }
+            
+            /* Tabelas responsivas */
+            @media (max-width: 640px){
+              table{
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+              }
+            
+              /* Botões de navegação menores e fora do “miolo” */
+              .nav-btn{
+                top: auto;
+                bottom: 16px;
+                transform: none;
+                padding: 12px 10px;
+                font-size: 18px;
+                border-radius: 10px;
+              }
+              .nav-btn.prev{ left: 12px; }
+              .nav-btn.next{ right: 12px; }
+            }
+
     </style>
 </head>
 <body>
